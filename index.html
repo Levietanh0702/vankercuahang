@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> VANKER - Nâng Tầm Không Gian</title>
+    <style>
+        /* Tùy chỉnh màu sắc và font chữ cho giống giao diện mẫu */
+        :root {
+            --primary-color: #085757; /* Màu cam nút bấm */
+            --bg-header: #e9fdf0; /* Màu nền nhẹ phía trên */
+            --bg-body: #fafafa; /* Màu nền trắng nhẹ toàn trang */
+            --text-dark: #333;
+            --text-light: #777;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+        }
+
+        /* 1. Thanh tiêu đề top (Màu cam) */
+        .header-top {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+        .header-top-left { display: flex; align-items: center; gap: 10px; }
+        .header-top-right button {
+            background-color: white; color: var(--primary-color);
+            border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;
+        }
+
+        /* 2. Thanh Menu (Màu trắng) */
+        .navbar {
+            background-color: var(--bg-header);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; color: #cc6600; }
+        .logo span { font-size: 28px; }
+        .nav-links { display: flex; gap: 20px; font-weight: 500; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); }
+        .contact-btn {
+            background-color: var(--primary-color);
+            color: white; text-decoration: none;
+            padding: 10px 20px; border-radius: 20px;
+            font-weight: bold; transition: background 0.3s;
+        }
+        .contact-btn:hover { background-color: #e66a1f; }
+
+        /* 3. Phần giới thiệu (Banner) */
+        .hero-section {
+            background-color: var(--bg-header);
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero-title { font-size: 36px; margin-bottom: 10px; color: #555; }
+        .hero-subtitle { color: var(--text-light); font-size: 16px; margin-top: 0; }
+
+        /* 4. Lưới sản phẩm */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 cột */
+            gap: 30px;
+            padding: 40px 10%;
+        }
+
+        /* 5. Khung sản phẩm */
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+
+        .product-image {
+            width: 100%;
+            height: 200px; /* Chiều cao ảnh cố định */
+            object-fit: cover; /* Giúp ảnh không bị méo */
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .product-name { font-size: 18px; font-weight: bold; margin: 0 0 5px 0; }
+        .product-desc { color: var(--text-light); font-size: 14px; margin: 0 0 15px 0; line-height: 1.4; flex-grow: 1; }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .product-price { color: var(--primary-color); font-weight: bold; font-size: 16px; margin: 0; }
+        
+        .buy-btn {
+            background-color: rgb(255, 255, 255);
+            color: #cc6600; /* Màu cam đậm */
+            border: 2px solid #cc6600;
+            text-decoration: none;
+            padding: 6px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .buy-btn:hover { background-color: #cc6600; color: white; }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); padding: 20px 5%; }
+            .hero-title { font-size: 28px; }
+            .nav-links { display: none; } /* Ẩn menu trên mobile */
+        }
+        @media (max-width: 480px) {
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-top">
+        <div class="header-top-left">
+            Đặt nội thất thiết kế theo yêu cầu ngay!
+        </div>
+        <div class="header-top-right">
+            <button>Liên hệ tư vấn: 0987.456.321</button>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="logo">
+            <span>🛋️</span> NỘI THẤT VANKER
+        </div>
+        <div class="nav-links">
+        </div>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkAN-1-iIcmpBdhaHxI9wtwjAtHIBZN9ROX2SMQA9jS310DQ/viewform?usp=dialog" target="_blank" class="contact-btn"> Đặt Món Ngay</a>
+    </div>
+
+    <div class="hero-section">
+        <h1 class="hero-title"> NỘI THẤT SANG TRỌNG </h1>
+        <p class="hero-subtitle">Thiết kế hiện đại - Chất liệu bền bỉ - Giao hàng tận nơi</p>
+    </div>
+
+    <div class="product-grid">
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=600&auto=format&fit=crop" alt="Ghế Sofa" class="product-image">
+            <div class="product-info">
+                <p class="product-name">Ghế Sofa Phòng Khách Hiện Đại</p>
+                <p class="product-desc">Vải nỉ cao cấp, khung gỗ sồi, màu xanh rêu sang trọng.</p>
+                <div class="product-footer">
+                    <p class="product-price">2.500.000đ</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkAN-1-iIcmpBdhaHxI9wtwjAtHIBZN9ROX2SMQA9jS310DQ/viewform?usp=dialog" target="_blank" class="buy-btn">Chọn</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://pula.vn/storage/images/2021/01/17/17480046611-1502082484.webp" alt="Bàn Ăn" class="product-image">
+            <div class="product-info">
+                <p class="product-name">Bàn Ăn Gỗ Nguyên Khối</p>
+                <p class="product-desc">Chất liệu gỗ xoan đào tự nhiên, kích thước 1m6 x 0m8.</p>
+                <div class="product-footer">
+                    <p class="product-price">7.200.000đ</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkAN-1-iIcmpBdhaHxI9wtwjAtHIBZN9ROX2SMQA9jS310DQ/viewform?usp=dialog" target="_blank" class="buy-btn">Chọn</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=600&auto=format&fit=crop" alt="Tủ Quần Áo" class="product-image">
+            <div class="product-info">
+                <p class="product-name">Tủ Quần Áo 4 Cánh Cửa Lùa</p>
+                <p class="product-desc">Gỗ MDF chống ẩm, tích hợp gương soi, màu trắng tối giản.</p>
+                <div class="product-footer">
+                    <p class="product-price">6.800.000đ</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkAN-1-iIcmpBdhaHxI9wtwjAtHIBZN9ROX2SMQA9jS310DQ/viewform?usp=dialog" target="_blank" class="buy-btn">Chọn</a>
+                </div>
+            </div>
+        </div>
+
+       <div class="product-card">
+            <img src="https://pula.vn/storage/uploads/original/2025/07/29/ghe-an-go-boc-da-cao-cap-bowtie-1.jpg" alt="Bàn Ăn" class="product-image">
+            <div class="product-info">
+                <p class="product-name">Ghế ăn gỗ bọc da cao cấp Bowtie</p>
+                <p class="product-desc">Ghế ăn gỗ bọc da yên ngựa cao cấp.</p>
+                <div class="product-footer">
+                    <p class="product-price">3.200.000đ</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkAN-1-iIcmpBdhaHxI9wtwjAtHIBZN9ROX2SMQA9jS310DQ/viewform?usp=dialog" target="_blank" class="buy-btn">Chọn</a>
+                </div>
+            </div>
+        </div>
+
+               <div class="product-card">
+            <img src="https://pula.vn/storage/uploads/original/2025/07/04/bo-sofa-go-huong-xam-5-mon-sg02-1.jpg" alt="Bàn Ăn" class="product-image">
+            <div class="product-info">
+                <p class="product-name">Bộ sofa gỗ Hương xám 5 món</p>
+                <p class="product-desc">Chất liệu gỗ xoan đào tự nhiên, kích thước 1m6 x 0m8.</p>
+                <div class="product-footer">
+                    <p class="product-price">74.200.000đ</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkAN-1-iIcmpBdhaHxI9wtwjAtHIBZN9ROX2SMQA9jS310DQ/viewform?usp=dialog" target="_blank" class="buy-btn">Chọn</a>
+                </div>
+            </div>
+        </div>
+
+               <div class="product-card">
+            <img src="https://pula.vn/storage/uploads/original/2025/09/18/tu-bep-melamine-chu-i-pkc36-1.jpg" alt="Bàn Ăn" class="product-image">
+            <div class="product-info">
+                <p class="product-name">Tủ bếp Melamine chữ I PKC36</p>
+                <p class="product-desc">Tủ bếp cánh kính hiện đại.</p>
+                <div class="product-footer">
+                    <p class="product-price">5.800.000đ</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkAN-1-iIcmpBdhaHxI9wtwjAtHIBZN9ROX2SMQA9jS310DQ/viewform?usp=dialog" target="_blank" class="buy-btn">Chọn</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        </div>
+
+</body>
+</html>
